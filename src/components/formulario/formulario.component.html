@@ -1,0 +1,27 @@
+<form [formGroup]="datoForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="empresa">
+        <h3>Empresas Disponibles</h3>
+        <select formControlName="nombre">
+            @for(emp of empresas;track emp.id){
+            <option>{{emp.nombre}}</option>
+            }
+        </select>
+        <!--        <select formControlName="nombre">
+            <option *ngFor="let emp of empresas" [value]="emp.id">{{emp.nombre}}</option>
+        </select>
+        -->
+    </div>
+    <div formGroupName="destino">
+        <label for="ciudadOrigen">Ciudad de Partida</label>
+        <input id="origen" type="text" formControlName="ciudadOrigen">
+        <br/>
+        <h3>Destinos Disponibles</h3>
+        <select formControlName="ciudadDestino">
+            @for(ciudad of ciudades;track ciudad.id){
+                <option>{{ciudad.nombre}}</option>
+            }
+        </select>
+    </div>
+    <button type="button" (click)="onClick()">Verificar</button>
+    <button type="submit" [disabled]="!datoForm.valid">Siguiente</button>
+</form>
