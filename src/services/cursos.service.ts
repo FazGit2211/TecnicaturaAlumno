@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class EmpresaServiceService {
+export class CursosService {
 
-  private apiUrl = 'http://localhost:8080/admin/empresa';
+  private url = 'http://localhost:5125/Curso';
 
   constructor(private http: HttpClient) { }
 
-  getAllEmpresa(){
-    return this.http.get(this.apiUrl);
+  getAllData(): Observable<any>{
+    return this.http.get<any>(this.url);
   }
 }
