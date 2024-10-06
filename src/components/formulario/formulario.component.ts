@@ -1,7 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder,Validators, ReactiveFormsModule } from '@angular/forms';
-import { EmpresaServiceService } from '../../services/empresa-service.service';
-import { CiudadService } from '../../services/ciudadService/ciudad.service';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder,ReactiveFormsModule } from '@angular/forms';
+import { CursosService } from '../../services/cursos.service';
 
 
 @Component({
@@ -14,29 +13,34 @@ import { CiudadService } from '../../services/ciudadService/ciudad.service';
 
 
 
-export class FormularioComponent {
+export class FormularioComponent implements OnInit{
 
   datoForm: FormGroup;
-  empresas: any;
-  ciudades: any;
+  cursos: any;
+  
   @Input() estado:boolean = false;
   @Output() formularioEnviado = new EventEmitter<boolean>()
 
-  constructor(private formBuilder: FormBuilder, private empresaService: EmpresaServiceService, private ciudadService: CiudadService) {
+  constructor(private formBuilder: FormBuilder, private cursosService: CursosService) {
     this.datoForm = this.formBuilder.group({
-      empresa: this.formBuilder.group({
-        nombre:['']
+      persona: this.formBuilder.group({
+        nombre:[''],
+        apellido:[''],
+        dni:[''],
+        numeroAlumno:['']
       }),
-      destino: this.formBuilder.group({
-        ciudadOrigen:[''],
-        ciudadDestino:['']
-      })
+      curso:['']
     });
-    this.empresaService.getAllEmpresa().forEach(elem => {
-      this.empresas = elem;
-    });
-    this.ciudadService.getAllCiudad().subscribe(elem => this.ciudades = elem);
   }
+
+  ngOnInit(): void {
+    this.cursosService.getAllData().subscribe(
+      response => {
+        this.cursos = response;
+      },
+      error => {console.log("Error",+error)}
+    )
+}
 
 
 
