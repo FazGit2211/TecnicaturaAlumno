@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder,ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { CursosService } from '../../services/cursos.service';
+import { Curso } from '../../models/Curso';
+import { Alumno } from '../../models/Alumno';
+import { Inscripcion } from '../../models/Inscripcion';
 
 
 @Component({
@@ -13,23 +16,22 @@ import { CursosService } from '../../services/cursos.service';
 
 
 
-export class FormularioComponent implements OnInit{
+export class FormularioComponent implements OnInit {
 
   datoForm: FormGroup;
   cursos: any;
-  
-  @Input() estado:boolean = false;
+
+  @Input() estado: boolean = false;
   @Output() formularioEnviado = new EventEmitter<boolean>()
 
   constructor(private formBuilder: FormBuilder, private cursosService: CursosService) {
     this.datoForm = this.formBuilder.group({
       persona: this.formBuilder.group({
-        nombre:[''],
-        apellido:[''],
-        dni:[''],
-        numeroAlumno:['']
+        nombre: [''],
+        apellido: [''],
+        dni: ['']
       }),
-      curso:['']
+      curso: ['']
     });
   }
 
@@ -38,31 +40,24 @@ export class FormularioComponent implements OnInit{
       response => {
         this.cursos = response;
       },
-      error => {console.log("Error",+error)}
+      error => { console.log("Error", +error) }
     )
-}
-
-
-
- 
-
-  /*datoForm = new FormGroup({
-    nombre: new FormControl(''),
-    apellido: new FormControl(''),
-    dni: new FormControl(0),
-    empresa: new FormGroup({
-      nombre: new FormControl(''),
-    })
-  })*/
-
-
+  }
 
   onClick() {
-    console.log(this.datoForm.value.nombre)
-    console.log(this.datoForm.value.apellido)
-    console.log(this.datoForm.value.dni)
-    console.log(this.datoForm.value.empresa?.nombre)
-    console.log(this.datoForm.value.destino?.ciudadDestino)
+    //separar los valores de la concatenacion
+    let cursoValue = this.datoForm.value.curso.split(',');
+    const alu = new Alumno(this.datoForm.value.persona.nombre, this.datoForm.value.persona.apellido, this.datoForm.value.persona.dni);
+    const inscripcion = new Inscripcion(alu);
+    const cursoObj = new Curso(cursoValue[0], cursoValue[1], cursoValue[2], cursoValue[3]);
+    this.cursosService.postData(cursoObj).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log("Error al enviar curso" + error)
+      }
+    )
   }
 
   onSubmit() {

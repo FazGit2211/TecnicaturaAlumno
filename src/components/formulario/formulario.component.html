@@ -14,10 +14,7 @@
     <label for="curso">Curso:</label>
     <select id="curso" formControlName="curso" class="form-control">
         @for(curso of cursos; track curso.id){
-            <option>{{ curso.codigoCurso }}</option>
-            <option>{{ curso.nombreCurso }}</option>
-            <option>{{ curso.anio }}</option>
-            <option>{{ curso.cuatrimestre }}</option>
+        <option>{{ curso.codigoCurso +',' + curso.nombreCurso +','+ curso.anio +',' +curso.cuatrimestre}}</option>
         }
     </select>
     <button type="button" (click)="onClick()" class="btn btn-secondary m-1">Verificar</button>
