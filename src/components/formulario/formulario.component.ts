@@ -49,8 +49,8 @@ export class FormularioComponent implements OnInit {
     let cursoValue = this.datoForm.value.curso.split(',');
     const alu = new Alumno(this.datoForm.value.persona.nombre, this.datoForm.value.persona.apellido, this.datoForm.value.persona.dni);
     const inscripcion = new Inscripcion(alu);
-    const cursoObj = new Curso(cursoValue[0], cursoValue[1], cursoValue[2], cursoValue[3]);
-    this.cursosService.postData(cursoObj).subscribe(
+    let codigoCurso = cursoValue[0];
+    this.cursosService.addInscripcion(codigoCurso,inscripcion).subscribe(
       response => {
         console.log(response);
       },

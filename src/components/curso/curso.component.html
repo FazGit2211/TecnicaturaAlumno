@@ -1,1 +1,21 @@
 <p>curso works!</p>
+<table class="table mt-3" id="estudiantes-table">
+    <thead>
+        <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Año</th>
+            <th>Cuatrimestre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @for(curso of cursos; track curso.id){
+                <td>{{curso.codigoCurso}}</td>
+                <td>{{curso.nombreCurso}}</td>
+                <td>{{curso.anio}}</td>
+                <td>{{curso.cuatrimestre}}</td>
+            }
+        </tr>
+    </tbody>
+</table>
