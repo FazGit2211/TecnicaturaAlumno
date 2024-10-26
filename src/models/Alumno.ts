@@ -5,6 +5,6 @@ export class Alumno extends Persona{
 
     constructor(nom:string,ape:string,dni:number){
         super(nom,ape,dni);
-        this.codigoAlumno = ""
+        this.codigoAlumno = Math.random().toString();
     }
 }

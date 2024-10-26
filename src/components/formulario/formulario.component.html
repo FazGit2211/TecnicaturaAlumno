@@ -17,6 +17,5 @@
         <option>{{ curso.codigoCurso +',' + curso.nombreCurso +','+ curso.anio +',' +curso.cuatrimestre}}</option>
         }
     </select>
-    <button type="button" (click)="onClick()" class="btn btn-secondary m-1">Verificar</button>
     <button type="submit" [disabled]="!datoForm.valid" class="btn btn-primary m-1">Siguiente</button>
 </form>

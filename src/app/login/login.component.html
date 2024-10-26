@@ -1,0 +1,14 @@
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="usuario">
+        <h3>Información Login</h3>
+        <label for="nombre">Nombre Usuario:</label>
+        <input type="text" formControlName="nombre" class="form-control">
+        <br />
+        <label for="contrasenia">Contrasenia:</label>
+        <input type="password" formControlName="contrasenia" class="form-control">
+        <br />
+    </div>
+    <button type="button" (click)="onClick()"  class="btn btn-secondary m-1">Verificar</button>
+    <button type="submit" class="btn btn-primary m-1">Enviar</button>
+    <button type="submit" class="btn btn-secondary m-1" routerLink="/registroForm">Registrarce</button>
+</form>

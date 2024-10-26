@@ -20,8 +20,8 @@ export class CursosService {
     return this.http.post(this.url,curso);
   }
 
-  //enviar inscripcion
+  //agregar inscripcion
   addInscripcion(codigo:string,inscripcion:Inscripcion): Observable<any>{
-    return this.http.post(this.url+'/'+codigo,inscripcion);
+    return this.http.put(this.url+'/'+codigo,inscripcion);
   }
 }

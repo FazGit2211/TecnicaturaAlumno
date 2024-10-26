@@ -1,0 +1,17 @@
+<p>registro works!</p>
+<form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="usuario">
+        <h3>Información Registro</h3>
+        <label for="nombre">Nombre:</label>
+        <input type="text" formControlName="nombre" class="form-control">
+        <br />
+        <label for="correo">Correo Electrónico:</label>
+        <input type="text" formControlName="correo" class="form-control">
+        <br />
+        <label for="contrasenia">Contrasenia:</label>
+        <input type="password" formControlName="contrasenia" class="form-control">
+        <br />
+    </div>
+    <button type="button" (click)="onClick()" class="btn btn-secondary m-1">Verificar</button>
+    <button type="submit" [disabled]="!dataForm.valid" class="btn btn-primary m-1">Siguiente</button>
+</form>
