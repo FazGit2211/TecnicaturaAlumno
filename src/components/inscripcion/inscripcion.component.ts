@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormularioComponent } from '../formulario/formulario.component';
-import { Alumno } from '../../models/Alumno';
-import { Inscripcion } from '../../models/Inscripcion';
+
 import { InscripcionService } from '../../services/inscripcionServices/inscripcion.service';
-import { CursosService } from '../../services/cursos.service';
+import { CursoService } from '../../services/cursoServices/curso.service';
+import { Alumno } from '../../backend/alumno/alumno';
+import { Inscripcion } from '../../backend/inscripcion/inscripcion';
+
 
 @Component({
   selector: 'app-inscripcion',
@@ -16,7 +18,7 @@ export class InscripcionComponent {
 
   datoForm:any;
   estadoBtn:boolean = false;
-  constructor(private inscripcionService: InscripcionService, private cursosService: CursosService){}
+  constructor(private inscripcionService: InscripcionService, private cursosService: CursoService){}
   
   obtenerDatosFormulario(datos: any) {
     console.log("Formulario", datos);

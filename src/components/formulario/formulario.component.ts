@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { CursosService } from '../../services/cursos.service';
+import { CursoService } from '../../services/cursoServices/curso.service';
+
 
 
 @Component({
@@ -19,7 +20,7 @@ export class FormularioComponent implements OnInit {
   cursos: any;
   @Output() formularioEnviado = new EventEmitter<any>()
 
-  constructor(private formBuilder: FormBuilder, private cursosService: CursosService) {
+  constructor(private formBuilder: FormBuilder, private cursosService: CursoService) {
     this.datoForm = this.formBuilder.group({
       persona: this.formBuilder.group({
         nombre: [''],

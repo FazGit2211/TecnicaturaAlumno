@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,6 +8,9 @@ import { RouterLink } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent {
-
+export class NavComponent implements OnInit {
+  rol: string ="";
+  ngOnInit(): void {
+    this.rol = "usuario";
+  }
 }

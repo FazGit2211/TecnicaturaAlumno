@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication.service';
-import { Usuario } from '../../models/usuario';
+import { AutentificacionService } from '../../services/autentificacionServices/autentificacion.service';
+import { Usuario } from '../../backend/usuario/usuario';
+
+
 
 @Component({
   selector: 'app-registro',
@@ -13,7 +15,7 @@ import { Usuario } from '../../models/usuario';
 export class RegistroComponent {
   dataForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private authService:AuthenticationService) {
+  constructor(private formBuilder: FormBuilder,private authService:AutentificacionService) {
     this.dataForm = this.formBuilder.group({
       usuario: this.formBuilder.group({
         nombre: [''],

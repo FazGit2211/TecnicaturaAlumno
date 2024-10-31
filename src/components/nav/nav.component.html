@@ -3,7 +3,9 @@
     <ul class="itemUl">
         <li><a routerLink="/inscripcion">Inscripcion</a></li>
         <li><a routerLink="/login">Iniciar Sesión</a></li>
+        @if(rol == "administrador"){
         <li><a routerLink="/alumno">Alumno</a></li>
+        }
         <li><a routerLink="/cursos">Cursos</a></li>
     </ul>
 </nav>
