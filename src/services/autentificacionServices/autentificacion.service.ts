@@ -13,7 +13,7 @@ export class AutentificacionService {
   private url = 'http://localhost:5125/Auth';
   constructor(private http: HttpClient) { }
   login(login: Login): Observable<any> {
-    return this.http.post(`${this.url}/login`, login);
+    return this.http.post(`${this.url}/login`, login)
   }
 
   register(usuario: Usuario): Observable<any> {
@@ -22,5 +22,9 @@ export class AutentificacionService {
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
+  }
+
+  isLoggedIn(){
+    return localStorage.getItem('token'); 
   }
 }
